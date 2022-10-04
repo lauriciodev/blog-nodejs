@@ -31,6 +31,8 @@ connection.authenticate()
 console.log(erro);
 });
 
+
+//setup routers
 app.use("/",routesCategories);
 app.use("/",routesArticles);
 
