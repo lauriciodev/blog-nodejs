@@ -5,8 +5,8 @@ router.get("/categories",(req,res) =>{
   res.send("rota de categorias")
 });
 
-router.get("/adm/categories/new",(req,res) =>{
-  res.send('rota para criação de rotas');
+router.get("/admin/categories/new",(req,res) =>{
+  res.send('rota para criação de categorias');
 });
 
 module.exports = router;

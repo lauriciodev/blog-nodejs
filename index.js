@@ -4,7 +4,9 @@ const bodyParser = require("body-parser");
 const connection = require("./database/database");
 
 //extern routes
-const routes = require("./categories/contegoriesControler");
+const routesCategorias = require("./categories/contegoriesControler");
+
+const routesArticles = require("./articles/articlesControles");
 
 //set view engine
 app.set("view engine","ejs");
@@ -26,7 +28,8 @@ connection.authenticate()
 console.log(erro);
 });
 
-app.use("/",routes);
+app.use("/",routesCategorias);
+app.use("/",routesArticles);
 
 
 
