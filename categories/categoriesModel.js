@@ -11,6 +11,5 @@ const categorieModel = connection.define("categories",{
 }
 });
 
-categorieModel.sync({force:true})
 
 module.exports = categorieModel;

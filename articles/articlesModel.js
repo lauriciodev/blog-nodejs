@@ -20,6 +20,5 @@ const articleModel = connection.define("articles",{
 categorieModel.hasMany(articleModel); //uma categoria tem muitos artigos
 articleModel.belongsTo(categorieModel); //um artigo pertence a uma categoria
 
-articleModel.sync({force:true})
 
 module.exports = articleModel;
