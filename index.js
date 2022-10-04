@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const connection = require("./database/database");
+
+//extern routes
+const routes = require("./categories/contegoriesControler");
 
 //set view engine
 app.set("view engine","ejs");
@@ -12,6 +16,17 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
+
+//database connection
+connection.authenticate()
+.then(() =>{
+  console.log("database success connection ");
+})
+.catch((erro) =>{
+console.log(erro);
+});
+
+app.use("/",routes);
 
 
 
