@@ -1,0 +1,26 @@
+{
+  "name": "blog-nodejs",
+  "version": "1.0.0",
+  "description": "blog com node.js  projeto do curso guia do programador professor victor # round one",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LauricioX/blog-nodejs.git"
+  },
+  "author": "lauricio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LauricioX/blog-nodejs/issues"
+  },
+  "homepage": "https://github.com/LauricioX/blog-nodejs#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.23.2"
+  }
+}
