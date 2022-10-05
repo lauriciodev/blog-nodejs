@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const categorieModel = require("./categoriesModel");
 const slugify = require("slugify");
+const { where } = require('sequelize');
 
 router.get("/admin/categories/new",(req,res) =>{
   res.render("admin/categories/new");
@@ -54,7 +55,7 @@ router.post("/categories/delete",(req,res) => {
  }
 });
 
-
+//form update
 router.get("/admin/categories/edit/:id",(req,res) =>{
   let id = req.params.id;
 
@@ -73,6 +74,21 @@ router.get("/admin/categories/edit/:id",(req,res) =>{
     res.redirect("/admin/categories")
   });
 });
+
+
+router.post("/categories/update",(req,res) =>{
+  let id =  req.body.id;
+  let title = req.body.title;
+
+  categorieModel.update(
+    {title:title,slug:slugify(title)},{
+    where:{
+      id:id
+    }}).then(() => {
+      res.redirect("/admin/categories");
+    })
+})
+
 
 
 module.exports = router;
