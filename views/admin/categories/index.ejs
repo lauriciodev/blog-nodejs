@@ -32,9 +32,9 @@
                 </th>
                 <th class="w-25 text-center">
 
-                  <button class="btn btn-warning">editar</button>
+                  <a href="/admin/categories/edit/<%=categories.id%>" class="btn btn-warning">editar</a>
 
-                  <form class="d-inline" action="/categories/delete" method="post">
+                  <form onsubmit="corfirmDelete(event,this)" class="d-inline" action="/categories/delete" method="post">
                     <input type="hidden" name="id" value="<%= categories.id%>">
                     <button type="submit" class="btn btn-danger">excluir</button>
                   </form>
@@ -46,6 +46,19 @@
           </tbody>
         </table>
       </div>
+
+      <script>
+        function corfirmDelete(event, form) {
+          event.preventDefault();
+          let decision = confirm("Deseja realmente deletar essa categoria?");
+
+          if (decision) {
+            form.submit();
+          }
+
+
+        };
+      </script>
 
   </body>
   <%- include ("../../partials/footer.ejs") %>
