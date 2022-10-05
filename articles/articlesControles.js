@@ -9,6 +9,7 @@ router.get("/admin/articles",(req,res) =>{
   res.send("rota de artigos")
 });
 
+//formulario para novo artigo
 router.get("/admin/articles/new",(req,res) =>{
   categorieModel.findAll().then( categories =>{
     res.render("admin/articles/new",{
@@ -17,6 +18,7 @@ router.get("/admin/articles/new",(req,res) =>{
   })
 });
 
+//salvando artigos
 router.post("/articles/save",(req,res)=>{
   let title = req.body.title;
   let body = req.body.body;
