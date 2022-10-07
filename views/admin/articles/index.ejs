@@ -20,10 +20,50 @@
           </thead>
 
           <tbody>
+            <% articles.forEach(articles=> { %>
+              <tr>
+                <th>
+                  <%= articles.id %>
+                </th>
+                <th>
+                  <%= articles.title %>
+                </th>
+                <th>
+                  <%= articles.slug %>
+                </th>
+                <th>
+                  <%= articles.category.title %>
+                </th>
+                <th class="w-25 text-center">
 
+
+
+                  <form onsubmit="corfirmDelete(event,this)" class="d-inline" action="/articles/delete" method="post">
+                    <input type="hidden" name="id" value="<%= articles.id%>">
+                    <button type="submit" class="btn btn-danger">excluir</button>
+                  </form>
+
+                </th>
+
+              </tr>
+              <% }) %>
 
           </tbody>
         </table>
       </div>
+
+
+      <script>
+        function corfirmDelete(event, form) {
+          event.preventDefault();
+          let decision = confirm("Deseja realmente deletar esse artigo?");
+
+          if (decision) {
+            form.submit();
+          }
+
+
+        };
+      </script>
   </body>
   <%- include ("../../partials/footer.ejs") %>

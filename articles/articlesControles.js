@@ -1,17 +1,22 @@
 const express = require("express");
-const categorieModel = require('../categories/categoriesModel');
 const router = express.Router();
 const categoriesModel = require("../categories/categoriesModel");
 const articlesModel = require("../articles/articlesModel");
 const slugify = require("slugify");
 
 router.get("/admin/articles",(req,res) =>{
-  res.render("admin/articles/index")
+  articlesModel.findAll({
+    include:[{model:categoriesModel}]
+  }).then( articles =>{
+        res.render("admin/articles/index",{
+      articles:articles
+    });
+  })
 });
 
 //formulario para novo artigo
 router.get("/admin/articles/new",(req,res) =>{
-  categorieModel.findAll().then( categories =>{
+  categoriesModel.findAll().then( categories =>{
     res.render("admin/articles/new",{
       categories:categories 
     });
@@ -34,5 +39,26 @@ router.post("/articles/save",(req,res)=>{
   })
 
 });
+
+//delete articles 
+router.post("/articles/delete",(req,res) => {
+  let id = req.body.id;
+  if(id != undefined){
+   if (!isNaN(id)) {
+       articlesModel.destroy({
+         where:{
+           id:id
+         }
+       }).then(() =>{
+         res.redirect("/admin/articles");
+       })
+   }else{
+     res.redirect("/admin/articles");
+   }
+    
+  }else{
+   res.redirect("/admin/articles");
+  }
+ });
 
 module.exports = router;

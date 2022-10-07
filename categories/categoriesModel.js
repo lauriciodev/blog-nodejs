@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const connection = require("../database/database");
 
-const categorieModel = connection.define("categories",{
+const categoriesModel = connection.define("categories",{
   title:{
   type:Sequelize.STRING,
   allowNull:false
@@ -12,4 +12,4 @@ const categorieModel = connection.define("categories",{
 });
 
 
-module.exports = categorieModel;
+module.exports = categoriesModel;
