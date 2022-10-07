@@ -1,8 +1,11 @@
 <%- include ("partials/header.ejs") %>
+  <%- include ("partials/homeNavbar.ejs") %>
 
-  <body>
-    <%- include ("partials/homeNavbar.ejs") %>
-      <div class="container d-flex flex-wrap gap-3">
+    <body>
+      <hr>
+      <h1 class="text-center">Bem-vindo!</h1>
+      <hr>
+      <div class="container-fluid d-flex flex-wrap gap-3">
         <% articles.forEach(article=> {%>
           <div class="card mt-3">
             <div class="card-header">
@@ -18,5 +21,5 @@
 
           <%})%>
       </div>
-  </body>
-  <%- include ("partials/footer.ejs") %>
+    </body>
+    <%- include ("partials/footer.ejs") %>
