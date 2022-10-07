@@ -39,10 +39,64 @@ app.use("/",routesArticles);
 
 
 app.get("/",(req,res) =>{
- articlesModel.findAll().then(articles =>{
-   res.render("index",{articles:articles})
+ articlesModel.findAll(
+ {
+  order:[
+    ["id","DESC"]
+  ]
+ }
+ ).then(articles =>{
+  categoriesModel.findAll().then(categories =>{
+   res.render("index",{
+    articles:articles,
+    categories:categories
+  })
+  });
  });
 });
+
+
+
+app.get("/:slug", (req,res) =>{
+  let slug = req.params.slug;
+  articlesModel.findOne({
+    where:{
+      slug:slug
+    }
+  }).then( articles =>{
+    if(articles != undefined){
+      categoriesModel.findAll().then(categories =>{
+        res.render("articles",{
+         articles:articles,
+         categories:categories
+       })
+       });
+    }else{
+      res.redirect("/");
+    }
+  }).catch(erro => {
+    res.redirect("/");
+  });
+});
+
+app.get("/categories/:slug", (res,req) =>{
+  let slug = req.params.slug;
+  categoriesModel.findOne({
+    where:{
+      slug:slug
+    },include: [{model:articlesModel}]
+  }).then( categorie =>{
+    if(categorie != undefined){
+      categoriesModel.findAll().then(categories =>{
+        res.render("index",{articles:category.articles});
+      });
+    }else{
+      res.redirect("/");
+    }
+  }).catch(erro =>{
+    res.redirect("/");
+  })
+})
 
 app.listen(3000,() =>{
   console.log("servidor ok!")

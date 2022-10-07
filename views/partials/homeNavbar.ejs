@@ -7,5 +7,13 @@
       <a href="/" class="text-white text-decoration-none">Home</a>
     </li>
 
+    <% categories.forEach(categories=>{%>
+      <li class="nav-item">
+        <a href="/categories/<%= categories.slug%>" class="text-white text-decoration-none">
+          <%= categories.title %>
+        </a>
+      </li>
+      <%})%>
+
   </ul>
 </nav>
