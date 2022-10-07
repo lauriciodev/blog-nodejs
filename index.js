@@ -39,7 +39,9 @@ app.use("/",routesArticles);
 
 
 app.get("/",(req,res) =>{
-  res.render("index");
+ articlesModel.findAll().then(articles =>{
+   res.render("index",{articles:articles})
+ });
 });
 
 app.listen(3000,() =>{
