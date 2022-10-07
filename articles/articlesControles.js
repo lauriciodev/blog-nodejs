@@ -6,14 +6,14 @@ const articlesModel = require("../articles/articlesModel");
 const slugify = require("slugify");
 
 router.get("/admin/articles",(req,res) =>{
-  res.send("rota de artigos")
+  res.render("admin/articles/index")
 });
 
 //formulario para novo artigo
 router.get("/admin/articles/new",(req,res) =>{
   categorieModel.findAll().then( categories =>{
     res.render("admin/articles/new",{
-      categories:categories
+      categories:categories 
     });
   })
 });
