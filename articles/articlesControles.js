@@ -29,14 +29,20 @@ router.post("/articles/save",(req,res)=>{
   let body = req.body.body;
   let categories = req.body.categories;
 
-  articlesModel.create({
-    title:title,
-    slug:slugify(title),
-    body:body,
-    categoryId:categories
-  }).then(() =>{
+  if(body == "" && categories == "" && title == ""){
+    articlesModel.create({
+      title:title,
+      slug:slugify(title),
+      body:body,
+      categoryId:categories
+    }).then(() =>{
+      res.redirect("/admin/articles")
+    })
+  }else{
     res.redirect("/admin/articles")
-  })
+  }
+
+  
 
 });
 
