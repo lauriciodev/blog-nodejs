@@ -6,15 +6,15 @@
       <h1 class="text-center">Bem-vindo!</h1>
       <hr>
       <div class="container-fluid d-flex flex-wrap gap-3">
-        <% articles.forEach(article=> {%>
+        <% articles.forEach(articles=> {%>
           <div class="card mt-3">
             <div class="card-header">
               <h6>
-                <%= article.title%>
+                <%= articles.title%>
               </h6>
             </div>
             <div class="card-body">
-              <a href="/<%= article.slug %>" class="btn btn-primary"> Ler Artigo</a>
+              <a href="/<%= articles.slug %>" class="btn btn-primary"> Ler Artigo</a>
             </div>
           </div>
 
