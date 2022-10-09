@@ -80,7 +80,7 @@ app.get("/:slug", (req,res) =>{
 });
 
 app.get("/categories/:slug", (res,req) =>{
-  let slug = req.params.slug;
+  let slug = req.params.slug
   categoriesModel.findOne({
     where:{
       slug:slug
