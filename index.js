@@ -10,6 +10,7 @@ const routesArticles = require("./articles/articlesControles");
 //databases models 
 const articlesModel = require("./articles/articlesModel");
 const categoriesModel = require("./categories/categoriesModel");
+const { Sequelize } = require('sequelize');
 
 //set view engine
 app.set("view engine","ejs");
@@ -57,6 +58,8 @@ app.get("/",(req,res) =>{
 
 
 
+
+
 app.get("/:slug", (req,res) =>{
   let slug = req.params.slug;
   articlesModel.findOne({
@@ -98,7 +101,30 @@ app.get("/categories/:slug", (req,res) =>{
   }).catch(erro =>{
     res.redirect("/");
   })
-})
+});
+
+app.post("/search",(req,res) =>{
+  let Op = Sequelize.Op;
+  let search = `%${req.body.search}`;
+  articlesModel.findOne({
+    where:{
+      title:{ [Op.like]: search }
+    }
+  }).then(results =>{
+    if(results != undefined){
+      res.render("results",{
+        articles:results
+       })
+    }else{
+      res.send("nada encontrado");
+    }
+     
+  })
+   
+  
+
+ })
+
 
 app.listen(3000,() =>{
   console.log("servidor ok!")
