@@ -79,8 +79,9 @@ app.get("/:slug", (req,res) =>{
   });
 });
 
-app.get("/categories/:slug", (res,req) =>{
+app.get("/categories/:slug", (req,res) =>{
   let slug = req.params.slug
+  
   categoriesModel.findOne({
     where:{
       slug:slug
