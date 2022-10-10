@@ -61,4 +61,45 @@ router.post("/articles/delete",(req,res) => {
   }
  });
 
+
+
+ //atualizar artigo
+ router.get("/articles/update/:id",(req,res) =>{
+  let id = req.params.id
+  articlesModel.findByPk(id).then(articles =>{
+    categoriesModel.findAll().then(categories =>{
+      res.render("admin/articles/edit",{
+        articles:articles,
+        categories:categories
+      })
+     
+    })
+  });
+   
+});
+
+router.post("/articles/update", (req,res) =>{
+  let title = req.body.title
+  let body = req.body.body
+  let id = req.body.id
+  let categories = req.body.categories
+ articlesModel.update({
+  title:title,
+  body:body,
+  slug:slugify(title),
+  categoriId:categories
+ },{
+  where:{
+    id:id
+  }
+ }).then(() =>{
+  res.redirect("/admin/articles");
+ }).catch(erro =>{
+  res.redirect("/")
+ })
+
+
+
+})
+
 module.exports = router;

@@ -36,7 +36,7 @@
                 </th>
                 <th style="width: 200px;" class="text-center">
 
-                  <button class="btn btn-warning">editar</button>
+                  <a href="/articles/update/<%= articles.id %>" class="btn btn-warning">editar</a>
 
                   <form onsubmit="corfirmDelete(event,this)" class="d-inline" action="/articles/delete" method="post">
                     <input type="hidden" name="id" value="<%= articles.id%>">
