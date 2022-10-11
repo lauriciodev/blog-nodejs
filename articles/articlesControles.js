@@ -97,9 +97,15 @@ router.post("/articles/update", (req,res) =>{
  }).catch(erro =>{
   res.redirect("/")
  })
+});
 
 
 
+router.get("/articles/page/:num",(req,res) =>{
+  let page = req.params.num;
+
+  articlesModel.findAndCountAll().then(articles =>{
+    res.json(articles);
+  })
 })
-
 module.exports = router;
