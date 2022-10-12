@@ -109,18 +109,21 @@ router.get("/articles/page/:num",(req,res) =>{
   offset = 0
 
  }else{
-  offset = parseInt(page) * 4;
+  offset = (parseInt(page) - 1) * 6;
  }
  
 
   articlesModel.findAndCountAll({
-    limit:4,
-    offset:offset
+    limit:6,
+    offset:offset,
+    order:[
+      ["id","DESC"]
+    ]
   }).then(articles =>{
 
     let next;
 
-    if(offset + 4 >= articles.count){
+    if(offset + 6 >= articles.count){
       next = false;
     }else{
       next = true;
@@ -131,8 +134,13 @@ router.get("/articles/page/:num",(req,res) =>{
       articles:articles
     }
 
-
-    res.json(result);
+    categoriesModel.findAll().then(categories =>{
+      res.render("admin/articles/page",{
+        page:parseInt(page),
+        result:result,
+        categories:categories
+      })
+    })
   })
 });
 

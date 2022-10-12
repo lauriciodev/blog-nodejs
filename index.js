@@ -44,7 +44,8 @@ app.get("/",(req,res) =>{
  {
   order:[
     ["id","DESC"]
-  ]
+  ],
+  limit:6
  }
  ).then(articles =>{
   categoriesModel.findAll().then(categories =>{
