@@ -62,8 +62,6 @@ app.get("/",(req,res) =>{
 
 
 
-
-
 app.get("/:slug", (req,res) =>{
   let slug = req.params.slug;
   articlesModel.findOne({
