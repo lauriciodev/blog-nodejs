@@ -1,2 +1,20 @@
-<h1>criar usuario</h1>
-<p>ola</p>
+<%- include ("../../partials/header.ejs") %>
+  <%- include ("../../partials/navbar.ejs") %>
+
+    <body>
+      <div class="container col-6">
+        <div class="card mt-4">
+          <div class="card-header">
+            <h1 class="text-center">Criar usuario</h1>
+          </div>
+          <div class="card-body">
+            <form action="/users/create" method="post">
+              <input type="text" placeholder="exemple@gmail.com" class="form-control" name="email" required> <br>
+              <input type="password" placeholder="your password" class="form-control" name="password" required> <br>
+              <button class="btn btn-primary" type="submit">criar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </body>
+    <%- include ("../../partials/footer.ejs") %>
