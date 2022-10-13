@@ -6,10 +6,12 @@ const connection = require("./database/database");
 //extern routes
 const routesCategories = require("./categories/contegoriesControler");
 const routesArticles = require("./articles/articlesControles");
+const routesUser = require("./user/usersController");
 
 //databases models 
 const articlesModel = require("./articles/articlesModel");
 const categoriesModel = require("./categories/categoriesModel");
+const userModel = require("./user/user")
 const { Sequelize } = require('sequelize');
 
 //set view engine
@@ -36,6 +38,7 @@ console.log(erro);
 //setup routers
 app.use("/",routesCategories);
 app.use("/",routesArticles);
+app.use("/", routesUser);
 
 
 
