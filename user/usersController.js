@@ -27,6 +27,7 @@ router.post("/users/create", (req,res) =>{
       let salt = bcrypt.genSaltSync(10);
   let hash = bcrypt.hashSync(password,salt);
  
+  
  
   userModel.create({
     email:email,
