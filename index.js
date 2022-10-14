@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const connection = require("./database/database");
+const session = require("express-session");
 
 //extern routes
 const routesCategories = require("./categories/contegoriesControler");
@@ -16,6 +17,14 @@ const { Sequelize } = require('sequelize');
 
 //set view engine
 app.set("view engine","ejs");
+
+//redis
+
+//sessions
+app.use(session({
+  secret:"senhafacil",
+  cookie:{maxAge:30000}
+}))
 
 //static
 app.use(express.static("public"));
@@ -41,6 +50,25 @@ app.use("/",routesArticles);
 app.use("/", routesUser);
 
 
+app.get("/session", (req,res) =>{
+req.session.treinamento = "formação node";
+req.session.nome = "lauricio";
+req.session.user = {
+  email:"lauricio@gmail.com",
+  pass:"233444221"
+};
+
+res.send("sessão gerada!")
+});
+
+app.get("/reading",(req,res) =>{
+  res.json({
+    treinamento:req.session.treinamento,
+    nome:req.session.nome,
+    user:req.session.user
+  })
+
+})
 
 app.get("/",(req,res) =>{
  articlesModel.findAll(
