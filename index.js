@@ -58,6 +58,7 @@ req.session.user = {
   pass:"233444221"
 };
 
+
 res.send("sessão gerada!")
 });
 
