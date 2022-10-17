@@ -24,7 +24,7 @@ app.set("view engine","ejs");
 app.use(session({
   secret:"senhafacil",
   cookie:{maxAge:30000}
-}))
+}));
 
 //static
 app.use(express.static("public"));
@@ -44,6 +44,8 @@ console.log(erro);
 });
 
 
+
+//passando dados para a session
 //setup routers
 app.use("/",routesCategories);
 app.use("/",routesArticles);
@@ -62,6 +64,8 @@ req.session.user = {
 res.send("sessão gerada!")
 });
 
+
+//pegando dados da session
 app.get("/reading",(req,res) =>{
   res.json({
     treinamento:req.session.treinamento,
