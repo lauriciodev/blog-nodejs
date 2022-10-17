@@ -20,6 +20,8 @@ app.set("view engine","ejs");
 
 //redis
 
+
+//configurando express-session
 //sessions
 app.use(session({
   secret:"senhafacil",
