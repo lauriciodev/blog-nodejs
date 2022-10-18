@@ -3,8 +3,9 @@ const router = express.Router();
 const categorieModel = require("./categoriesModel");
 const slugify = require("slugify");
 const { where } = require('sequelize');
+const adminAuth = require("../middlewares/adminalth");
 
-router.get("/admin/categories/new",(req,res) =>{
+router.get("/admin/categories/new",adminAuth,(req,res) =>{
   res.render("admin/categories/new");
 });
 
@@ -25,7 +26,7 @@ router.post("/categories/save",(req,res) =>{
 })
 
 //list categories
-router.get("/admin/categories", (req,res) =>{
+router.get("/admin/categories",adminAuth, (req,res) =>{
   categorieModel.findAll().then(categories =>{
   res.render("admin/categories/index",{
     categories:categories

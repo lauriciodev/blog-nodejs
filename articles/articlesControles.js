@@ -3,8 +3,9 @@ const router = express.Router();
 const categoriesModel = require("../categories/categoriesModel");
 const articlesModel = require("../articles/articlesModel");
 const slugify = require("slugify");
+const adminAuth = require("../middlewares/adminalth");
 
-router.get("/admin/articles",(req,res) =>{
+router.get("/admin/articles",adminAuth,(req,res) =>{
   articlesModel.findAll({
     include:[{model:categoriesModel}]
   }).then( articles =>{
@@ -15,7 +16,7 @@ router.get("/admin/articles",(req,res) =>{
 });
 
 //formulario para novo artigo
-router.get("/admin/articles/new",(req,res) =>{
+router.get("/admin/articles/new",adminAuth,(req,res) =>{
   categoriesModel.findAll().then( categories =>{
     res.render("admin/articles/new",{
       categories:categories 

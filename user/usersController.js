@@ -66,7 +66,7 @@ userModel.findOne({where:{email:email}}).then(user =>{
         id:user.id,
         email:user.email
       }
-      res.json(req.session.user);
+      res.redirect("/admin/articles")
     }else{
       res.redirect("/login")
     }
@@ -74,10 +74,13 @@ userModel.findOne({where:{email:email}}).then(user =>{
   }else{
     res.redirect("/login")
   }
+});
+});
+
+
+router.get("/logout", (req,res) =>{
+  req.session.user = undefined;
+  res.redirect("/login")
 })
-
-
-})
-
 
 module.exports = router;
